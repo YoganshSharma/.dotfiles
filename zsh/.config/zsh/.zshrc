@@ -55,9 +55,7 @@ bindkey -s '^n' 'cd ..\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 source ~/.config/zsh/plugins/copy-pasta/copy-pasta.plugin.zsh 
-# source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/ohmyzsh/plugins/sudo/sudo.plugin.zsh
+source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-auto-notify/auto-notify.plugin.zsh
 source ~/.config/zsh/plugins/ohmyzsh/plugins/dirhistory/dirhistory.plugin.zsh
 
