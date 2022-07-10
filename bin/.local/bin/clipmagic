@@ -1,0 +1,73 @@
+#!/bin/bash
+error() {
+	echo error
+	notify-send 'ClipMagic' 'An Error Occured'
+	exit 1
+}
+choice="$1"
+if [ -z $1 ];then
+	choice=$(printf "mpv\nmagnet\nshorten url\nspotifydl\nplaylist-spotifydl\nupload file\npost url\nthumbnail music"|dmenu -F -i)
+fi
+
+clip=$(xclip -o -selection clipboard)
+{
+case $choice in
+	'mpv')
+		notify-send 'ClipMagic' "Playing $clip with mpv"
+		mpv --player-operation-mode=pseudo-gui "$clip"
+		;;
+	'magnet')
+		deluge-console add $clip && notify-send 'ClipMagic' "Magnet added"||notify-send 'ClipMagic' 'an error occured'
+		;;
+	'shorten url')
+		url=$(curl -F"shorten=$clip" http://0x0.st -s 2>/dev/null)
+		[ -z $url ] && error
+		printf $url|xclip -selection clip
+		notify-send 'ClipMagic' "$url copied to clipboard"
+		;;
+	'spotifydl')
+	 playerctl -p spotify status || { notify-send 'spotify' 'player not found'; exit 1;}
+   url=$(playerctl -p spotify metadata xesam:url)
+   title=$(playerctl -p spotify metadata xesam:title)
+   artist=$(playerctl -p spotify metadata xesam:artist)
+	 notify-send "Downloading - $title" "$artist"
+	 spotifydl -o ~/Music "$url" && notify-send "Completed - $title" "$artist"|| notify-send 'Spotifydl' "Something went wrong" 
+	;;
+	'playlist-spotifydl')
+	 playlist="$(ls -1 .config/mpd/playlists|dmenu)"
+	 playerctl -p spotify status || { notify-send 'spotify' 'player not found'; exit 1;}
+   url=$(playerctl -p spotify metadata xesam:url)
+   title=$(playerctl -p spotify metadata xesam:title)
+   artist=$(playerctl -p spotify metadata xesam:artist)
+	 notify-send "Downloading - $title" "by $artist \n to $playlist"
+	 spotifydl -o ~/Music "$url" && { notify-send "Completed - $title" "$artist";find ~/Music -name "$title.mp3" | cut -d '/' -f5,6,7>>~/.config/mpd/playlists/$playlist; }|| notify-send 'Spotifydl' "Something went wrong" 
+	;;
+	'upload file')
+		url=$(curl -F"file=@$clip" -s http://0x0.st)
+		[ -z $url ] && error
+		printf $url|xclip -selection clip
+		notify-send 'ClipMagic' "$url copied to clipboard"
+		;;
+	'post url')
+		url=$(curl -F"url=$clip" -s http://0x0.st)
+		[ -z $url ] && error
+		printf $url|xclip -selection clipboard
+		notify-send 'ClipMagic' "$url copied to clipboard"
+		;;
+
+	'thumbnail music')
+		notify-send 'ClipMagic' "playing $clip"
+		#youtube-dl --youtube-skip-dash-manifest -g "$clip"|sed -n '2 p' |xargs mpv --player-operation-mode=pseudo-gui --external-file=$(youtube-dl --get-thumbnail "$clip") --vid=1 --loop
+		 mpv --player-operation-mode=pseudo-gui --external-file=$(youtube-dl --get-thumbnail "$clip") --vid=2 --loop "$clip"
+		;;
+	'')
+		exit 0
+		;;
+	*)
+		notify-send 'ClipMagic' 'Wrong option'
+		exit 1
+		;;
+esac
+} || {
+	error
+}

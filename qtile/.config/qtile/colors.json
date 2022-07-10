@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/yogansh/wallpapers/0061.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#090a03",
+        "foreground": "#e4d5d0",
+        "cursor": "#e4d5d0"
+    },
+    "colors": {
+        "color0": "#090a03",
+        "color1": "#0058cf",
+        "color2": "#003193",
+        "color3": "#0044a0",
+        "color4": "#2b6bff",
+        "color5": "#3e8fff",
+        "color6": "#4266ff",
+        "color7": "#e4d5d0",
+        "color8": "#9f9591",
+        "color9": "#24280c",
+        "color10": "#0053f5",
+        "color11": "#0c74ff",
+        "color12": "#2b6bff",
+        "color13": "#3e8fff",
+        "color14": "#4266ff",
+        "color15": "#e4d5d0"
+    }
+}

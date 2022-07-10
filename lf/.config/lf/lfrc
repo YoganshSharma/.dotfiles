@@ -1,0 +1,114 @@
+#Basic settings
+set hidden true
+set drawbox true
+set icons true
+set ignorecase true
+set scrolloff 10
+
+cmd open $ setsid -f rifle -p 0 "$f"
+#cmd open ${{
+    #case $(file --mime-type $f -b) in
+	#image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        #text/*) $EDITOR $fx;;
+	#image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	#image/svg+xml) display -- $f ;;
+	#image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
+	#audio/*) mpv --audio-display=no $f ;;
+	#video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+	#application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        #*) for f in $fx; do echo $f; done;;
+    #esac
+#}}
+
+
+cmd trash %{{
+	if [ -z $fs ]; then
+		echo 'Are you sure you want to delete this file?' $f
+		read ans
+		clear
+		if [ $ans = 'y' ]; then
+			echo 'Deleting'
+			trash-put $f
+			echo 'Deleted' $f
+		fi
+	else
+		echo 'Are you sure you want to delete all [y/n]'
+	fi
+}}
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+# Archive bindings
+cmd unarchive %{{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+cmd mkdir %{{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+  clear
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+  printf "File Name: "
+  read ans
+  sudo $EDITOR $ans
+}}
+map m
+map M mark-save
+map D delete
+map gf fzf_jump
+
+# Archive Mappings
+map az zip
+map at tar
+map ag targz
+map ab targz
+map au unarchive
+
+map mf mkfile
+map mr sudomkfile
+map md mkdir
+map ms $mkscript
+map ch chmod
+
+map p paste
+map x cut
+map y copy

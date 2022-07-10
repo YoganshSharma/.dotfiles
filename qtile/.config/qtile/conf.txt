@@ -1,0 +1,114 @@
+[
+    [
+        {
+            "TextBox": {
+                "text": " \u27f3",
+                "padding": 2,
+                "fontsize": 14
+            }
+        },
+        {
+            "CheckUpdates": {
+                "update_interval": 1800,
+                "mouse_callbacks": {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e \"sudo pacman -Syu\"')},
+            }
+        },
+        {
+            "TextBox": {
+                "text": "Updates",
+                "padding": 5,
+                "mouse_callbacks": {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e \"sudo pacman -Syu\"')},
+            }
+        }
+    ],
+    [
+        {
+            "TextBox": {
+                "text": " \ud83d\uddac",
+                "padding": 0,
+                "fontsize": 14
+            }
+        },
+        {
+            "Memory": {
+                "padding": 5
+            }
+        }
+    ],
+    [
+        {
+            "TextBox": {
+                "text": "Brightness:",
+                "padding": 5
+            }
+        },
+        {
+            "Backlight": {
+                "backlight_name": "intel_backlight",
+                "padding": 5
+            }
+        }
+    ],
+    [
+        {
+            "TextBox": {
+                "text": " Vol:",
+                "padding": 0
+            }
+        },
+        {
+            "Volume": {
+                "padding": 5,
+                "volume_app": "pavucontrol"
+            }
+        }
+    ],
+    [
+        {
+            "TextBox": {
+                "text": "Battery:",
+                "padding": 0
+            }
+        },
+        {
+            "Battery": {
+                "format": "{char} {percent:2.0%} {hour:d}:{min:02d} ",
+                "padding": 0
+            }
+        }
+    ],
+    [
+        {
+            "TextBox": {
+                "text": " WLan:",
+                "padding": 0
+            }
+        },
+        {
+            "Wlan": {
+                "padding": 5,
+                "interface": "wlo1"
+            }
+        }
+    ],
+    [
+        {
+            "CurrentLayoutIcon": {
+                "padding": 0,
+                "scale": 0.7
+            }
+        },
+        {
+            "CurrentLayout": {
+                "padding": 5
+            }
+        }
+    ],
+    [
+        {
+            "Clock": {
+                "format": "%A, %B %d  [ %H:%M ]"
+            }
+        }
+    ]
+]

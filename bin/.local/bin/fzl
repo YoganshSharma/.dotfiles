@@ -1,0 +1,4 @@
+#!/bin/sh
+#tree -iaf -R --noreport $@ |fzf |xargs -r -d '\n' xdg-open
+# tree -iaf -R --noreport $@ |fzf |xargs -r -d '\n' rifle -p 0
+tree -iaf -R --noreport $@|sed 's/\\ / /g' |fzf|xargs -r -d '\n' rifle -p 0

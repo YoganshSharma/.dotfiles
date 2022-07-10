@@ -1,0 +1,6 @@
+USERXSESSION="$XDG_CACHE_HOME/x11/xsession"
+USERXSESSIONRC="$XDG_CACHE_HOME/x11/xsessionrc"
+ALTUSERXSESSION="$XDG_CACHE_HOME/x11/Xsession"
+ERRFILE="$XDG_CACHE_HOME/x11/xsession-errors"
+xrdb -load ~/.config/x11/xresources
+exec dwm

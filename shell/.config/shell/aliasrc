@@ -1,0 +1,48 @@
+#!/bin/sh
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# navigation
+alias ..='cd ..'
+
+# Changing "ls" to "exa"
+alias ls='exa  --icons --color=auto --group-directories-first' # my preferred listing
+alias la='exa --icons -ah --color=auto --group-directories-first'  # all files and dirs
+alias ll='exa --icons -lah --color=auto --group-directories-first'  # long format
+alias lt='exa --icons -aT --color=auto --group-directories-first' # tree listing
+alias l.='exa -a --icons| egrep "^\."'
+
+# confirm before overwriting something
+alias cp="cp -iv"
+alias mv='mv -iv'
+alias rm='rm -I'
+
+# mkdir recursively
+alias mkdir='mkdir -vp'
+
+#devour window swallowing
+alias mpvd="devour mpv"
+alias sxid="devour sxiv"
+# allen
+alias live="python ~/stuff/vid/test.py"
+
+#I am a bit lazy
+alias please='sudo $(fc -ln -1)'
+alias p='sudo pacman'
+alias v='nvim'
+alias SS='sudo systemctl'
+alias c='xclip -selection clip'
+alias bt='bluetoothctl'
+
+#???
+alias mine='sudo /usr/bin/cpuminer -a cryptonight -o stratum+tcp://pool.minexmr.com:4444 -u `cat ~/mineid` -p x -t 3'
+alias rice='nitrogen --save --set-scaled --random ~/wallpapers/ && python ~/.config/scripts/wallpaper_theme.py && qtile cmd-obj -o cmd -f restart'
+alias spotify='LD_PRELOAD=/usr/lib/spotify-adblock.so spotify'
+alias b='cd /mnt/winlinux/bpms'
+alias l='cd /mnt/personal/Videos/'
+alias g='googler'
+alias wall='sxiv -r -q -t -o -|xargs -r nitrogen --set-scaled --save'

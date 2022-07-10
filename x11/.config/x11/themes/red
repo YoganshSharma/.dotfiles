@@ -1,0 +1,73 @@
+!! Transparency (0-1):
+!! Set a default font and font size as below:
+bar.font: Cascadia Mono:size=10
+
+st.font: Cascadia Mono:size=12:antialias=true:autohint=true:fixed=true
+st.font_fallback: JoyPixels:pixelsize=15:antialias=true:autohint=true:fixed=true
+st.alpha: 1
+st.cwscale: 1
+st.chscale: 1
+st.padding: 0
+st.cursorfg:  #babdb6
+
+! special
+*.foreground:   #f8f8f8
+*.background:   #171717
+*.cursorColor:  #f8f8f8
+
+! black
+*.color0:       #171717
+*.color8:       #48453c
+/* *.color8:       #38252c */
+
+! red
+*.color1:       #d81765
+*.color9:       #ff0000
+
+! green
+*.color2:       #97d01a
+*.color10:      #76b639
+
+! yellow
+*.color3:       #ffa800
+*.color11:      #e1a126
+
+! blue
+*.color4:       #16b1fb
+*.color12:      #289cd5
+
+! magenta
+*.color5:       #ff2491
+*.color13:      #ff2491
+
+! cyan
+*.color6:       #0fdcb6
+*.color14:      #0a9b81
+
+! white
+*.color7:       #ebebeb
+*.color15:      #f8f8f8
+
+xmenu.font: JetBrains Mono:size=10
+xmenu.background: #101010
+xmenu.foreground: #d3d7cf
+xmenu.selbackground: #cc0000
+xmenu.selforeground: #ffffff
+
+dmenu.font: Cascadia Mono:size=11
+dmenu.background: #101010
+dmenu.foreground: #d3d7cf
+dmenu.selbackground: #cc0000
+dmenu.selforeground: #ffffff
+dmenu.height: 10
+
+
+dwm.normbgcolor: #101010
+dwm.normbordercolor: #101010
+dwm.normfgcolor: #d3d7cf
+dwm.selbgcolor: #cc0000
+dwm.selbordercolor: #fa2021
+dwm.selfgcolor: #ffffff
+dwm.borderpx: 3
+dwm.swallowfloating: 1
+!# vim: ft=xdefaults

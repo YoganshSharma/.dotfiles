@@ -1,0 +1,22 @@
+[
+    {
+        "TextBox":{
+            "text": "⟳",
+            "padding":2,
+            "fontsize":14
+        },
+        "CheckUpdates":{
+            "update_interval": 1800,
+             "mouse_callbacks": {"Button1": lambda qtile: qtile.cmd_spawn(myTerm + " -e \"sudo pacman -Syu\" ")}
+            },
+
+    },
+    {
+        "TextBox":{
+            "text": "Brightness",
+            "mouse_callbacks" : {"Button4":lambda q: subprocess.call("",shell=True)},
+            "padding":2,
+            "fontsize":14
+        },
+    },
+]

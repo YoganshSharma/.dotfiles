@@ -1,0 +1,1 @@
+find  /mnt/personal/photos/yogansh/Takeout/Google\ Photos /mnt/personal/photos/ritu2298/Takeout/Google\ Photos -type f |rg '.json'|sed "s/^/'/;s/$/'/"|xargs rg -i "$1" -l|sed 's/.json//'

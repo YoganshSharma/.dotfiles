@@ -1,0 +1,52 @@
+#!/bin/bash
+[ -z "$1" ] && { echo "No playlist id provided";exit 2;} 
+type="playlists"
+[ -z "$2" ] || type="$2"
+CLIENT_ID=31aeb6551353480b9670378eb8656158
+CLIENT_SECRET=aaff172af7fe469285d365af098c5425
+playlist_id=$1
+IFS=$'\n'
+mkdir -p /tmp/spotifydl/playlistgen
+file_json="/tmp/spotifydl/playlistgen/$playlist_id.json"
+save_dir="$HOME/.config/mpd/playlists/"
+echo $file_json
+
+token=$(curl -d client_id=$CLIENT_ID -d client_secret=$CLIENT_SECRET -d grant_type=client_credentials https://accounts.spotify.com/api/token|jq -r '.access_token')
+echo "$token:$(date)">>/tmp/spotifydl/token
+curl -X "GET" "https://api.spotify.com/v1/$type/$playlist_id" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $token">$file_json
+
+name=$(jq '.name'<"$file_json"|sed 's/^"//g;s/"$//g;s/ /_/g')
+file="/tmp/spotifydl/playlistgen/$name.m3u"
+[ -s $file ] && cat /dev/null > $file
+next=$(jq -r '.tracks.next' $file_json)
+[ -z $next ] &&next="null"
+while [ "$next" != "null"   ]
+do
+  echo "in loop $next"
+  jq '.tracks.items[].track' "$file_json"|jq -r '.artists[0].name,.album.name,.name'|sed 's/[&\/\\#+$!"~.%:*?<>{}\|]//g'|sed 'N;N;s/\n/\//g;s/$/.mp3/g'>>$file
+  curl -X "GET" "$next" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $token">$file_json
+  next=$(jq -r '.tracks.next' $file_json)
+  [ -z $next ] &&next="null"
+done
+echo "loop done"
+jq '.tracks.items[].track' "$file_json"|jq -r '.artists[0].name,.album.name,.name'|sed 's/[&\/\\#+$!"~.%:*?<>{}\|]//g'|sed 'N;N;s/\n/\//g;s/$/.mp3/g'>>$file
+pushd ~/Music
+for i in $(cat $file); do
+  while [ ! -f "$i" ]; do
+    echo "NOTEXISTS:$i"
+    spotifydl -o ~/Music "https://open.spotify.com/playlist/$playlist_id" 
+  done
+
+done
+
+if [ ! -f "$i" ]; then
+  echo "NOTEXISTS:$i"
+  exit 1
+fi
+popd
+
+# cp "$file" "$save_dir/$name.m3u"
+
+
+
+

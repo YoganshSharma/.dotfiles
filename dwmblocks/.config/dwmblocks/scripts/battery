@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# Prints all batteries, their percentage remaining and an emoji corresponding
+# to charge status (🔌 for plugged up, 🔋 for discharging on battery, etc.).
+
+case $BLOCK_BUTTON in
+	3) notify-send "🔋 Battery module" "🔋: discharging
+🛑: not charging
+♻: stagnant charge
+🔌: charging
+⚡: charged
+❗: battery very low!
+- Scroll to change adjust xbacklight." ;;
+	4) xbacklight -inc 10 ;;
+	5) xbacklight -dec 10 ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+# Loop through all attached batteries and format the info
+for battery in /sys/class/power_supply/BAT?*; do
+	# If non-first battery, print a space separator.
+	[ -n "${capacity+x}" ] && printf " "
+	# Sets up the status and capacity
+	status="$(cat "$battery/status")"
+	capacity=$(cat "$battery/capacity")
+	case $status in
+		"Full") statusicon="  " ;;
+		"Discharging") statusicon=" " ;;
+		"Charging") statusicon="  " ;;
+		"Not charging") statusicon="  " ;;
+		"Unknown") statusicon="♻️" ;;
+	esac
+	if [ "$status" = "Discharging" ]; then
+		if [ "$capacity" -le 13 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 38 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 63 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 88 ]; then 
+			statusicon="  "
+		else
+			statusicon="  "
+		fi
+	fi
+	if [ "$status" = "Charging" ]; then
+		if [ "$capacity" -le 5 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 15 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 25 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 35 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 45 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 65 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 75 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 85 ]; then 
+			statusicon="  "
+		elif [ "$capacity" -le 95 ]; then 
+			statusicon="  "
+		else
+			statusicon="  "
+		fi
+	fi
+	# Will make a warn variable if discharging and low
+	[ "$status" = "Discharging" ] && [ "$capacity" -le 25 ] && warn=" " && notify-send "⚠️ Charge Battery ⚠️ " 
+	# Prints the info
+	printf "%s%s%d%% " "$statusicon" "$warn" "$capacity"; unset warn
+done && exit 0

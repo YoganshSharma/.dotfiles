@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Prints the current volume or  if muted.
+
+case $BLOCK_BUTTON in
+	1) setsid -f "$TERMINAL" -e pulsemixer ;;
+	2) notify-send "🔆 Backlight module" "\- Shows volume 🔊, 🔇 if muted.
+- Right click to mute.
+- Scroll to change." ;;
+	#3) pamixer -t ;;
+	4) brightnessctl s +80;;
+	5) brightnessctl s 80-;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+
+per="$(($(brightnessctl g) *100/$(brightnessctl m)))"
+
+if [ "$per" -gt "78" ]; then
+	icon=""
+elif [ "$per" -gt "63" ]; then
+	icon=""
+elif [ "$per" -gt "38" ]; then
+	icon=""
+elif [ "$per" -gt "13" ]; then
+	icon=""
+else
+	icon=""
+fi
+
+echo " $icon $per% "

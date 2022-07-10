@@ -1,0 +1,7 @@
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map <C-r> rotate rotate-ccw
+map <C-i> recolor
+set selection-clipboard clipboard
+set font "Cascadia Mono 15"

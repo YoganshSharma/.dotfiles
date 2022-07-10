@@ -1,0 +1,93 @@
+!! Transparency (0-1):
+!! Set a default font and font size as below:
+bar.font: Cascadia Mono:size=12
+
+/**.background: #000000*/
+
+/**.foreground: #ffffff*/
+
+
+!# Normal colors
+!black:   '#4a4b4a'
+!red:     '#d7699a'
+!green:   '#80d468'
+!yellow:  '#d7a169'
+!blue:    '#6985d7'
+!magenta: '#c86ad4'
+!cyan:    '#6fccd1'
+!white:   '#dbdcdc'
+
+!# Bright colors
+!bright:
+!black:   '#696969'
+!red:     '#f502b5'
+!green:   '#a3f2a0'
+!yellow:  '#f5cda2'
+!blue:    '#a2c1f5'
+!magenta: '#d2a2f5'
+!cyan:    '#a0e9f2'
+!white:   '#fdfdfd'
+! special
+!st.foreground:   #b6c9e3
+!st.background:   #101012
+st.font: Cascadia Mono:size=14
+!st.font_fallback: JoyPixels:pixelsize=15:antialias=true:autohint=true
+st.alpha: 1
+st.cwscale: 1
+st.chscale: 1
+st.padding: 0
+st.cursorfg:  #babdb6
+
+! hard contrast: *background: #1d2021
+*background: #292929
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #484848
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+alacritty.font: Cascadia Mono
+alacritty.size: 14
+xmenu.font: JetBrains Mono:size=10
+xmenu.background: #3f3f4a
+xmenu.foreground: #d3d7cf
+xmenu.selbackground: #bdae93
+xmenu.selforeground: #000000
+
+dmenu.font: Cascadia Mono:size=14
+dmenu.background: #3f3f3a
+dmenu.foreground: #d3d7cf
+dmenu.selbackground: #bdae93
+dmenu.selforeground: #000000
+dmenu.height: 10
+
+
+dwm.normbgcolor: #3f3f3a
+dwm.normbordercolor: #292929
+dwm.normfgcolor: #d3d7cf
+dwm.selbgcolor: #bdae93
+dwm.selbordercolor: #ebdbb2
+dwm.selfgcolor: #292929
+dwm.borderpx: 2
+dwm.swallowfloating: 1
+!# vim: ft=xdefaults

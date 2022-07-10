@@ -1,0 +1,86 @@
+# Other XDG paths
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state/"
+export XDG_RUNTIME_DIR=/run/user/1000
+
+export SHELL="/bin/zsh"
+export BROWSER=firefox
+export EDITOR="nvim"
+export LOCATION="jaipur"
+export TERMINAL="st"
+export OPENER=rifle
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export PRINTER="EPSON_L220_Series"
+export DOTFILES=$HOME/.dotfiles
+export LANG="en_US.UTF-8"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+# Cleaning home directory
+export _Z_DATA="$XDG_DATA_HOME/z"
+export TERMINFO="$XDG_DATA_HOME"/terminfo 
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo 
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
+export ATOM_HOME="$XDG_DATA_HOME"/atom
+export GOPATH="$XDG_DATA_HOME"/go
+#export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
+export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+#alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+export QT_STYLE_OVERRIDE=kvantum
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+export KDEHOME="$XDG_CONFIG_HOME"/kde
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
+export TASKDATA="$XDG_DATA_HOME"/task
+
+export LIBCLANG_PATH=/usr/lib/libclang.so
+export PATH=$PATH:~/.local/bin/
+
+if [[ $(tty) = /dev/tty1 ]]
+ then 
+
+    export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+   default="$(readlink ~/.config/x11/xinitrc)"
+   initrcs=$(/bin/ls -1 ~/.config/x11/initrcs)
+   initrcs_abs=$(/bin/ls -d -1 ~/.config/x11/initrcs/**)
+   list=''
+   i=1   
+   for rc in $initrcs  
+   do      
+     list="${list}\n${i}\t${rc}" 
+     i=$(($i+1))
+   done
+   echo -e "$list"
+   len="$(printf $list|wc -l)"
+   echo "Choose from [1-$len] (default: $default)"
+   read -r init
+   for j in `seq $len`
+   do 
+     [[ "$init" == "$j" ]] && default=$(printf "$initrcs_abs"|sed "$j!d")
+   done
+   echo "using $default"
+   exec sx $default
+
+fi
