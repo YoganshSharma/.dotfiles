@@ -7,6 +7,7 @@ luafile $HOME/.config/nvim/keys/barbar.lua
 " luafile $HOME/.config/nvim/lua/barbar.lua
 luafile $HOME/.config/nvim/lua/plug-colorizer.lua
 luafile $HOME/.config/nvim/lua/lsp.lua
+luafile $HOME/.config/nvim/lua/tabnine.lua
 source $HOME/.config/nvim/keys/lspkeys.vim
 luafile $HOME/.config/nvim/lua/telescope_config.lua
 luafile $HOME/.config/nvim/lua/cmp_config.lua
