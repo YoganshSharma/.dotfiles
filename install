@@ -8,6 +8,7 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.config
 mkdir -p ~/.config/mpv
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/x11/
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     stow -D $folder -d "$DOTFILES"

@@ -1,5 +1,8 @@
 #!/bin/sh
+
+#clean home directory
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+alias irssi=irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'

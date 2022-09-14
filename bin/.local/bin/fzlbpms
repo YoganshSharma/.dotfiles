@@ -1,2 +1,5 @@
 #!/bin/sh
-fzl /mnt/winlinux/bpms /mnt/old_home/home/yogansh/stuff/live/ /mnt/personal/Videos  /mnt/old_home/home/yogansh/stuff/fastrep /mnt/old_home/home/yogansh/Downloads/tgd/DataExport_2021-10-02/chats/ ~/stuff/vdjee/
+FOLDERS="$HOME/stuff/resources/ $HOME/stuff/calibre/"
+# FOLDERS="$HOME/stuff/resources/cse373/ $HOME/stuff/resources/cherno $HOME/stuff/calibre"
+tree -iafl -F -I 'cover.jpg' -I 'metadata.opf' -R --noreport $FOLDERS|grep -v /$|sed 's/\\ / /g' |fzf|xargs -r -d '\n' rifle -p 0
+

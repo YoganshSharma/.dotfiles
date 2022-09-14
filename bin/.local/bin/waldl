@@ -24,8 +24,9 @@ sxiv_otps=" -tfpo -z 200" # o is needed for selection
 # number of pages to show in search results
 # each page contains 24 results
 max_pages=4
+start_page=1
 # sorting : date_added, relevance, random, views, favorites, toplist
-sorting=relevance
+sorting=favorites
 # quality : large original small
 quality=large
 # atleast : least res
@@ -91,7 +92,8 @@ trap "clean_up" EXIT
 
 # request the search results for each page
 get_results () {
-	for page_no in $(seq $max_pages)
+  
+for page_no in $(seq $start_page $(($max_pages + $start_page)))
 	do
 		{
 			json=$(curl -s -G "https://wallhaven.cc/api/v1/search" \

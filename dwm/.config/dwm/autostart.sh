@@ -9,8 +9,8 @@ pgrep xidlehook || xidlehook --not-when-audio --not-when-fullscreen --timer 1800
 # pgrep redshift-gtk || (redshift -x; redshift-gtk) &
 pgrep xbanish || xbanish &
 pgrep timelapse || timelapse &
+pgrep deluged || deluged &
 disown
 xmodmap  ~/.config/x11/xmodmap
 xrdb -load ~/.config/x11/xresources
 # xscreensaver &
-
