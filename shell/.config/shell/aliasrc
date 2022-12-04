@@ -40,6 +40,8 @@ alias v='nvim'
 alias SS='sudo systemctl'
 alias c='xclip -selection clip'
 alias bt='bluetoothctl'
+alias sdh='sudo dhcpcd'
+
 
 #???
 alias mine='sudo /usr/bin/cpuminer -a cryptonight -o stratum+tcp://pool.minexmr.com:4444 -u `cat ~/mineid` -p x -t 3'

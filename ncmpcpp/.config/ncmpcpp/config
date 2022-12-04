@@ -626,10 +626,10 @@ progressbar_color = black:b
 progressbar_elapsed_color = blue:b
 statusbar_color = red
 statusbar_time_color = cyan:b
-lyrics_fetchers = custom
 
 execute_on_song_change="~/stuff/reps/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
 custom_lyrics_fetcher="~/.config/ncmpcpp/fetcher"
-# lyrics_fetchers = azlyrics, musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
+lyrics_fetchers = azlyrics, musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
+# lyrics_fetchers = custom
 
 # vim: filetype=conf

@@ -21,9 +21,9 @@ getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
 # 	grep -wo "[0-9]*%" | sort -rn | sed "s/^/ /g;1q" | tr -d '\n')"
 # sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sed 's/+//g' | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "  " $1 "糖"," " $2 "糖 "}' ;}
 showweather() { sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sed 's/+//g' | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "  " $1 "糖"," " $2 "糖 "}' ;}
-
 case $BLOCK_BUTTON in
-	1) setsid -f "$TERMINAL" -e less -Srf "$weatherreport" ;;
+	1) setsid -f "$TERMINAL" -e most "$weatherreport" ;;
+	# 1) setsid -f "$TERMINAL" -e less -Srf  "$weatherreport" ;;
 	2) notify-send "🌈 Weather module" "\- Left click for full forecast.
 - Right click to update forecast.
 ☔: Chance of rain/snow

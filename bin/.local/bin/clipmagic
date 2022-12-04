@@ -58,7 +58,7 @@ case $choice in
 	'thumbnail music')
 		notify-send 'ClipMagic' "playing $clip"
 		#youtube-dl --youtube-skip-dash-manifest -g "$clip"|sed -n '2 p' |xargs mpv --player-operation-mode=pseudo-gui --external-file=$(youtube-dl --get-thumbnail "$clip") --vid=1 --loop
-		 mpv --player-operation-mode=pseudo-gui --external-file=$(youtube-dl --get-thumbnail "$clip") --vid=2 --loop "$clip"
+		 mpv --player-operation-mode=pseudo-gui --external-file=$(yt-dlp --get-thumbnail "$clip") --vid=2 --loop "$clip"
 		;;
 	'')
 		exit 0
