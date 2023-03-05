@@ -1,3 +1,4 @@
+please
 SHELL=/bin/zsh
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 # fpath+=$HOME/.config/zsh/plugins/pure/
@@ -86,3 +87,6 @@ compctl -K _pip_completion pip
 
 # Load syntax highlighting; should be last.
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+[ -f "/home/yogansh/.ghcup/env" ] && source "/home/yogansh/.ghcup/env" # ghcup-env
+

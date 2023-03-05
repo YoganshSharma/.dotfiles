@@ -7,9 +7,9 @@ lxpolkit &
 # fcitx5 -d &
 pgrep xidlehook || xidlehook --not-when-audio --not-when-fullscreen --timer 1800 '/usr/local/bin/slock systemctl hybrid-sleep' ''&
 # pgrep redshift-gtk || (redshift -x; redshift-gtk) &
-pgrep xbanish || xbanish &
+pgrep unclutter || unclutter -b &
 pgrep timelapse || timelapse &
-pgrep deluged || deluged &
+# pgrep deluged || deluged &
 python /opt/youtube-local/server.py
 conky -c ~/.config/conky/system
 conky -c ~/.config/conky/arch-rss

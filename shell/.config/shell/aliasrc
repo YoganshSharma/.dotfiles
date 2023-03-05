@@ -34,7 +34,7 @@ alias sxid="devour sxiv"
 alias live="python ~/stuff/vid/test.py"
 
 #I am a bit lazy
-alias please='sudo $(fc -ln -1)'
+# alias please='sudo $(fc -ln -1)'
 alias p='sudo pacman'
 alias v='nvim'
 alias SS='sudo systemctl'
@@ -49,5 +49,4 @@ alias rice='nitrogen --save --set-scaled --random ~/wallpapers/ && python ~/.con
 alias spotify='LD_PRELOAD=/usr/lib/spotify-adblock.so spotify'
 alias b='cd /mnt/winlinux/bpms'
 alias l='cd /mnt/personal/Videos/'
-alias g='googler'
-alias wall='sxiv -r -q -t -o -|xargs -r nitrogen --set-scaled --save'
+alias wallchooser="find	"$HOME/wallpapers/" -name '*.png' -o -name '*.jpg' | sxiv -r -q -t -o -|xargs -r nitrogen --set-scaled --save"

@@ -25,7 +25,7 @@ rotate() {
 case "$1" in
 "C-x")      xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
 "C-c")      while read file; do xclip -selection clipboard -target image/png "$file"; done ;;
-"C-d")      tr '\n' '\0' | xargs -0 trash-put & ;;
+"C-d")      tr '\n' '\0' | xargs -r trash-put & ;;
 "C-w")			xargs -r nitrogen --set-scaled --save ;;
 "C-e")      while read file; do st -e sh -c "exiv2 pr -q -pa '$file' | less" & done ;;
 "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;

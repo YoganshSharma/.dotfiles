@@ -59,7 +59,7 @@ export TASKDATA="$XDG_DATA_HOME"/task
 
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export LIBCLANG_PATH=/usr/lib/libclang.so
-export PATH=$PATH:~/.local/bin/:~/.local/share/npm/bin/
+export PATH=$PATH:~/.local/bin/:~/.local/share/npm/bin/:/home/yogansh/.local/share/gem/ruby/3.0.0/bin
 
 export ANDROID_HOME="$HOME/Android/Sdk/"
 
@@ -67,7 +67,7 @@ export ANDROID_HOME="$HOME/Android/Sdk/"
 if [[ $(tty) = /dev/tty1 ]]
  then 
    export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-   default="$(readlink ~/.config/x11/xinitrc)"
+   default="$(realpath ~/.config/x11/xinitrc)"
    initrcs=$(/bin/ls -1 ~/.config/x11/initrcs)
    initrcs_abs=$(/bin/ls -d -1 ~/.config/x11/initrcs/**)
    list=''
@@ -81,11 +81,11 @@ if [[ $(tty) = /dev/tty1 ]]
    len="$(printf $list|wc -l)"
    echo "Choose from [1-$len] (default: $default)"
    read -r init
-   for j in `seq $len`
+   { for j in `seq $len`
    do 
-     [[ "$init" == "$j" ]] && default=$(printf "$initrcs_abs"|sed "$j!d")
-   done
+     [[ "$init" == "$j" ]]  && default=$(printf "$initrcs_abs"|sed "$j!d")
+   done }  
    echo "using $default"
-   exec sx $default
-
+   echo "$(date) $default" >>/tmp/loginlog
+   exec sx $default 
 fi
