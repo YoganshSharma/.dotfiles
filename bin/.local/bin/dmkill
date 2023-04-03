@@ -7,7 +7,7 @@
 # Contributors: Derek Taylor
 
 selected="$(ps --user "$(id -u)" -o pid,%cpu,%mem,cmd c  | \
-            dmenu -i -l 20 -p "Search for process to kill:" | \
+            rofi -dmenu -i -l 20 -p "Search for process to kill:" | \
             awk '{print $1" "$4}')";
 
 if [[ -n $selected ]]; then

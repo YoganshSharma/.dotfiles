@@ -24,12 +24,12 @@ local servers = {
 	pyright = {},
 	dartls = {},
 	gopls = {},
+	pylsp = {},
 	-- grammarly = { init_options = { clientId = os.getenv("GRAMMARLY_CLIENT_ID") } },
 	zk = {},
 	grammarly = {
 		clientId = os.getenv("GRAMMARLY_CLIENT_ID"),
 	},
-
 	-- rust_analyzer = {
 	--     settings = {
 	--         ["rust-analyzer"] = {
@@ -48,7 +48,7 @@ local servers = {
 	tailwindcss = {},
 }
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local options = {
 	on_attach = on_attach,

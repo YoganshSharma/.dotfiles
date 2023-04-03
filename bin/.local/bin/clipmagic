@@ -4,12 +4,25 @@ error() {
 	notify-send 'ClipMagic' 'An Error Occured'
 	exit 1
 }
-choice="$1"
-if [ -z $1 ];then
-	choice=$(printf "mpv\nmagnet\nshorten url\nspotifydl\nplaylist-spotifydl\nupload file\npost url\nthumbnail music"|dmenu -F -i)
+dm=x11
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-w|--wayland) dm="wayland"
+		;;
+		*) choice="$1"
+		;;
+	esac
+	shift
+done
+
+echo $dm
+[ "$dm" = "wayland" ] && clip=$(wl-paste) || clip=$(xclip -o -selection clipboard)
+echo $clip
+echo hh
+if [ -z $choice ];then
+	choice=$(printf "mpv\nmagnet\nshorten url\nspotifydl\nplaylist-spotifydl\nupload file\npost url\nthumbnail music"|rofi -dmenu -F -i -theme ~/.config/waybar/scripts/rofi/styles.rasi)
 fi
 
-clip=$(xclip -o -selection clipboard)
 {
 case $choice in
 	'mpv')
