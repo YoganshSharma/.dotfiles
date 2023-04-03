@@ -1,0 +1,9 @@
+#!/bin/sh
+wallpath=$(find /home/yogansh/wallpapers/ -name '*.png' -o -name '*.jpg'|sort | sxiv -r -q -t -o -|head -1)
+lnpath="$HOME/.config/hypr/wallpapers/wallpaper.jpg"
+if [[ -n "$wallpath" ]]; then
+	rm "$lnpath"
+	ln -s "$wallpath" "$lnpath"
+	swaybg -m fill -i $wallpath
+fi
+

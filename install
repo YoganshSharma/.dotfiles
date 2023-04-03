@@ -10,6 +10,7 @@ mkdir -p ~/.config/mpv
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/x11/
 mkdir -p ~/.config/shell/
+mkdir -p ~/.config/hypr/wallpapers/
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     stow -D $folder -d "$DOTFILES"
