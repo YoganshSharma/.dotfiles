@@ -10,7 +10,8 @@ local config = {
 local function plugins(use)
 	-- Packer can manage itself as an optional plugin
 	use({ "wbthomason/packer.nvim" })
-
+	-- wakatime plugin
+	use 'wakatime/vim-wakatime'
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -175,10 +176,10 @@ local function plugins(use)
 		-- keys = { "<leader><space>", "<leader>fz", "<leader>pp" },
 		requires = {
 			{ "nvim-telescope/telescope-file-browser.nvim", module = "telescope._extensions.file_browser" },
-			{ "nvim-telescope/telescope-z.nvim", module = "telescope._extensions.z" },
-			{ "nvim-telescope/telescope-project.nvim", module = "telescope._extensions.project" },
-			{ "nvim-telescope/telescope-symbols.nvim", module = "telescope._extensions.symbols" },
-			{ "nvim-telescope/telescope-fzf-native.nvim", module = "telescope._extensions.fzf", run = "make" },
+			{ "nvim-telescope/telescope-z.nvim",            module = "telescope._extensions.z" },
+			{ "nvim-telescope/telescope-project.nvim",      module = "telescope._extensions.project" },
+			{ "nvim-telescope/telescope-symbols.nvim",      module = "telescope._extensions.symbols" },
+			{ "nvim-telescope/telescope-fzf-native.nvim",   module = "telescope._extensions.fzf",         run = "make" },
 		},
 	})
 	use({ "nvim-lua/plenary.nvim", module = "plenary" })
@@ -214,7 +215,6 @@ local function plugins(use)
 	-- use('tanvirtin/monokai.nvim')
 	-- use('rktjmp/lush.nvim')
 	use("ellisonleao/gruvbox.nvim")
-
 end
 
 return packer.setup(config, plugins)

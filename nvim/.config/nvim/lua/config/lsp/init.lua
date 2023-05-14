@@ -19,14 +19,15 @@ local servers = {
 	tsserver = {},
 	marksman = {},
 	eslint = {},
+	solang = {},
 	html = {},
 	jsonls = {},
 	pyright = {},
 	dartls = {},
 	gopls = {},
 	pylsp = {},
+	vuels = {},
 	-- grammarly = { init_options = { clientId = os.getenv("GRAMMARLY_CLIENT_ID") } },
-	zk = {},
 	grammarly = {
 		clientId = os.getenv("GRAMMARLY_CLIENT_ID"),
 	},
@@ -43,9 +44,9 @@ local servers = {
 	--         },
 	--     },
 	-- },
-	sumneko_lua = { single_file_support = false },
+	lua_ls = { single_file_support = false },
 	vimls = {},
-	tailwindcss = {},
+	-- tailwindcss = {},
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

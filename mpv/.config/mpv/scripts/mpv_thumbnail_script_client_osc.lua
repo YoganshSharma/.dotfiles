@@ -14,13 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-   --
+--
 --[[
     mpv_thumbnail_script.lua 0.4.6 - commit c93ae22 (branch master)
     https://github.com/TheAMM/mpv_thumbnail_script
     Built on 2022-01-16 13:51:34
 ]]
-   --
+--
 local assdraw = require 'mp.assdraw'
 local msg = require 'mp.msg'
 local opt = require 'mp.options'
@@ -310,15 +310,15 @@ end
 
 -- ASS HELPERS --
 function round_rect_top(ass, x0, y0, x1, y1, r)
-	local c = 0.551915024494 * r                                   -- circle approximation
+	local c = 0.551915024494 * r                               -- circle approximation
 	ass:move_to(x0 + r, y0)
-	ass:line_to(x1 - r, y0)                                        -- top line
+	ass:line_to(x1 - r, y0)                                    -- top line
 	if r > 0 then
 		ass:bezier_curve(x1 - r + c, y0, x1, y0 + r - c, x1, y0 + r) -- top right corner
 	end
-	ass:line_to(x1, y1)                                            -- right line
-	ass:line_to(x0, y1)                                            -- bottom line
-	ass:line_to(x0, y0 + r)                                        -- left line
+	ass:line_to(x1, y1)                                        -- right line
+	ass:line_to(x0, y1)                                        -- bottom line
+	ass:line_to(x0, y0 + r)                                    -- left line
 	if r > 0 then
 		ass:bezier_curve(x0, y0 + r - c, x0 + r - c, y0, x0 + r, y0) -- top left corner
 	end
@@ -327,19 +327,19 @@ end
 function round_rect(ass, x0, y0, x1, y1, rtl, rtr, rbr, rbl)
 	local c = 0.551915024494
 	ass:move_to(x0 + rtl, y0)
-	ass:line_to(x1 - rtr, y0)                                                      -- top line
+	ass:line_to(x1 - rtr, y0)                                                    -- top line
 	if rtr > 0 then
 		ass:bezier_curve(x1 - rtr + rtr * c, y0, x1, y0 + rtr - rtr * c, x1, y0 + rtr) -- top right corner
 	end
-	ass:line_to(x1, y1 - rbr)                                                      -- right line
+	ass:line_to(x1, y1 - rbr)                                                    -- right line
 	if rbr > 0 then
 		ass:bezier_curve(x1, y1 - rbr + rbr * c, x1 - rbr + rbr * c, y1, x1 - rbr, y1) -- bottom right corner
 	end
-	ass:line_to(x0 + rbl, y1)                                                      -- bottom line
+	ass:line_to(x0 + rbl, y1)                                                    -- bottom line
 	if rbl > 0 then
 		ass:bezier_curve(x0 + rbl - rbl * c, y1, x0, y1 - rbl + rbl * c, x0, y1 - rbl) -- bottom left corner
 	end
-	ass:line_to(x0, y0 + rtl)                                                      -- left line
+	ass:line_to(x0, y0 + rtl)                                                    -- left line
 	if rtl > 0 then
 		ass:bezier_curve(x0, y0 + rtl - rtl * c, x0 + rtl - rtl * c, y0, x0 + rtl, y0) -- top left corner
 	end
@@ -559,10 +559,10 @@ local sha1 = (function()
 		local H0, H1, H2, H3, H4 = 0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0
 		local msg_len_in_bits = #msg * 8
 
-		local first_append = char(0x80)      -- append a '1' bit plus seven '0' bits
+		local first_append = char(0x80) -- append a '1' bit plus seven '0' bits
 
 		local non_zero_message_bytes = #msg + 1 +
-		8                                    -- the +1 is the appended bit 1, the +8 are for the final appended length
+			8 -- the +1 is the appended bit 1, the +8 are for the final appended length
 		local current_mod = non_zero_message_bytes % 64
 		local second_append = current_mod > 0 and rep(char(0), 64 - current_mod) or ""
 
@@ -770,14 +770,14 @@ local thumbnailer_options = {
 	-- Thumbnailing network paths will be done with mpv
 
 	-- Allow thumbnailing network paths (naive check for "://")
-	thumbnail_network = false,
+	thumbnail_network         = false,
 	-- Override thumbnail count, min/max delta
-	remote_thumbnail_count = 60,
-	remote_min_delta = 15,
-	remote_max_delta = 120,
+	remote_thumbnail_count    = 60,
+	remote_min_delta          = 15,
+	remote_max_delta          = 120,
 	-- Try to grab the raw stream and disable ytdl for the mpv subcalls
 	-- Much faster than passing the url to ytdl again, but may cause problems with some sites
-	remote_direct_stream = true,
+	remote_direct_stream      = true,
 }
 
 read_options(thumbnailer_options, SCRIPT_NAME)
@@ -834,7 +834,7 @@ function Thumbnailer:on_thumb_ready(index)
 end
 
 function Thumbnailer:on_thumb_progress(index)
-	if self.state.id ~= state_id then
+	if self.state.id ~= state_id or isempty(self.state.thumbnails[index]) then
 		return
 	end
 	self.state.thumbnails[index] = math.max(self.state.thumbnails[index], 0)
@@ -1192,7 +1192,7 @@ function Thumbnailer:start_worker_jobs()
 				local frames_json_string = utils.format_json(worker_frames)
 				msg.debug("Assigning job to", worker_name, frames_json_string)
 				mp.commandv("script-message-to", worker_name, "mpv_thumbnail_script-job", state_json_string,
-				frames_json_string)
+					frames_json_string)
 			end
 		end
 	end
@@ -1211,49 +1211,49 @@ local utils = require 'mp.utils'
 -- default user option values
 -- do not touch, change them in osc.conf
 local user_opts = {
-	showwindowed = true,   -- show OSC when windowed?
+	showwindowed = true, -- show OSC when windowed?
 	showfullscreen = true, -- show OSC when fullscreen?
-	scalewindowed = 1,     -- scaling of the controller when windowed
-	scalefullscreen = 1,   -- scaling of the controller when fullscreen
+	scalewindowed = 1,  -- scaling of the controller when windowed
+	scalefullscreen = 1, -- scaling of the controller when fullscreen
 	scaleforcedwindow = 2, -- scaling when rendered on a forced window
-	vidscale = true,       -- scale the controller with the video?
-	valign = 0.8,          -- vertical alignment, -1 (top) to 1 (bottom)
-	halign = 0,            -- horizontal alignment, -1 (left) to 1 (right)
-	barmargin = 0,         -- vertical margin of top/bottombar
-	boxalpha = 80,         -- alpha of the background box,
+	vidscale = true,    -- scale the controller with the video?
+	valign = 0.8,       -- vertical alignment, -1 (top) to 1 (bottom)
+	halign = 0,         -- horizontal alignment, -1 (left) to 1 (right)
+	barmargin = 0,      -- vertical margin of top/bottombar
+	boxalpha = 80,      -- alpha of the background box,
 	-- 0 (opaque) to 255 (fully transparent)
-	hidetimeout = 500,     -- duration in ms until the OSC hides if no
+	hidetimeout = 500,  -- duration in ms until the OSC hides if no
 	-- mouse movement. enforced non-negative for the
 	-- user, but internally negative is "always-on".
-	fadeduration = 200,     -- duration of fade out in ms, 0 = no fade
-	deadzonesize = 0.5,     -- size of deadzone
-	minmousemove = 0,       -- minimum amount of pixels the mouse has to
+	fadeduration = 200,  -- duration of fade out in ms, 0 = no fade
+	deadzonesize = 0.5,  -- size of deadzone
+	minmousemove = 0,    -- minimum amount of pixels the mouse has to
 	-- move between ticks to make the OSC show up
 	iamaprogrammer = false, -- use native mpv values and disable OSC
 	-- internal track list management (and some
 	-- functions that depend on it)
 	layout = "bottombar",
-	seekbarstyle = "bar",               -- bar, diamond or knob
-	seekbarhandlesize = 0.6,            -- size ratio of the diamond and knob handle
-	seekrangestyle = "inverted",        -- bar, line, slider, inverted or none
-	seekrangeseparate = true,           -- wether the seekranges overlay on the bar-style seekbar
-	seekrangealpha = 200,               -- transparency of seekranges
-	seekbarkeyframes = true,            -- use keyframes when dragging the seekbar
-	title = "${media-title}",           -- string compatible with property-expansion
+	seekbarstyle = "bar",            -- bar, diamond or knob
+	seekbarhandlesize = 0.6,         -- size ratio of the diamond and knob handle
+	seekrangestyle = "inverted",     -- bar, line, slider, inverted or none
+	seekrangeseparate = true,        -- wether the seekranges overlay on the bar-style seekbar
+	seekrangealpha = 200,            -- transparency of seekranges
+	seekbarkeyframes = true,         -- use keyframes when dragging the seekbar
+	title = "${media-title}",        -- string compatible with property-expansion
 	-- to be shown as OSC title
-	tooltipborder = 1,                  -- border of tooltip in bottom/topbar
-	timetotal = false,                  -- display total time instead of remaining time?
-	timems = false,                     -- display timecodes with milliseconds?
-	visibility = "auto",                -- only used at init to set visibility_mode(...)
-	boxmaxchars = 80,                   -- title crop threshold for box layout
-	boxvideo = false,                   -- apply osc_param.video_margins to video
-	windowcontrols = "auto",            -- whether to show window controls
+	tooltipborder = 1,               -- border of tooltip in bottom/topbar
+	timetotal = false,               -- display total time instead of remaining time?
+	timems = false,                  -- display timecodes with milliseconds?
+	visibility = "auto",             -- only used at init to set visibility_mode(...)
+	boxmaxchars = 80,                -- title crop threshold for box layout
+	boxvideo = false,                -- apply osc_param.video_margins to video
+	windowcontrols = "auto",         -- whether to show window controls
 	windowcontrols_alignment = "right", -- which side to show window controls on
-	greenandgrumpy = false,             -- disable santa hat
-	livemarkers = true,                 -- update seekbar chapter markers on duration change
-	chapters_osd = true,                -- whether to show chapters OSD on next/prev
-	playlist_osd = true,                -- whether to show playlist OSD on next/prev
-	chapter_fmt = "Chapter: %s",        -- chapter print format for seekbar-hover. "no" to disable
+	greenandgrumpy = false,          -- disable santa hat
+	livemarkers = true,              -- update seekbar chapter markers on duration change
+	chapters_osd = true,             -- whether to show chapters OSD on next/prev
+	playlist_osd = true,             -- whether to show playlist OSD on next/prev
+	chapter_fmt = "Chapter: %s",     -- chapter print format for seekbar-hover. "no" to disable
 }
 
 -- read options from config and command-line
@@ -1405,7 +1405,7 @@ function display_thumbnail(pos, value, ass)
 		ass:new_event()
 		ass:pos(bg_left, bg_top)
 		ass:append(("{\\bord0\\1c&H%s&\\1a&H%X&}"):format(thumbnailer_options.background_color,
-		thumbnailer_options.background_alpha))
+			thumbnailer_options.background_alpha))
 		ass:draw_start()
 		ass:rect_cw(-pad.l, -pad.t, ass_w + pad.r, bg_h + pad.b)
 		ass:draw_stop()
@@ -1452,7 +1452,7 @@ function display_thumbnail(pos, value, ass)
 				ass:append(("{\\bord0\\1c&H4444FF&\\1a&H%X&"):format(0))
 				ass:draw_start(2)
 				ass:rect_cw((closest_index - 1) * block_w, 0, math.min(block_max_x, closest_index * block_w),
-				framegraph_h)
+					framegraph_h)
 				ass:draw_stop()
 			end
 		end
@@ -1488,9 +1488,9 @@ end
 
 
 local osc_param = {
-                    -- calculated by osc_init()
-	playresy = 0,   -- canvas size Y
-	playresx = 0,   -- canvas size X
+	-- calculated by osc_init()
+	playresy = 0, -- canvas size Y
+	playresx = 0, -- canvas size X
 	display_aspect = 1,
 	unscaled_y = 0,
 	areas = {},
@@ -1521,22 +1521,22 @@ local osc_styles = {
 
 -- internal states, do not touch
 local state = {
-	showtime,                               -- time of last invocation (last mouse move)
+	showtime,                            -- time of last invocation (last mouse move)
 	osc_visible = false,
-	anistart,                               -- time when the animation started
-	anitype,                                -- current type of animation
-	animation,                              -- current animation alpha
-	mouse_down_counter = 0,                 -- used for softrepeat
-	active_element = nil,                   -- nil = none, 0 = background, 1+ = see elements[]
-	active_event_source = nil,              -- the "button" that issued the current event
+	anistart,                            -- time when the animation started
+	anitype,                             -- current type of animation
+	animation,                           -- current animation alpha
+	mouse_down_counter = 0,              -- used for softrepeat
+	active_element = nil,                -- nil = none, 0 = background, 1+ = see elements[]
+	active_event_source = nil,           -- the "button" that issued the current event
 	rightTC_trem = not user_opts.timetotal, -- if the right timecode should display total or remaining time
-	tc_ms = user_opts.timems,               -- Should the timecodes display their time with milliseconds
+	tc_ms = user_opts.timems,            -- Should the timecodes display their time with milliseconds
 	mp_screen_sizeX,
-	mp_screen_sizeY,                        -- last screen-resolution, to detect resolution changes to issue reINITs
-	initREQ = false,                        -- is a re-init request pending?
-	marginsREQ = false,                     -- is a margins update pending?
+	mp_screen_sizeY,                     -- last screen-resolution, to detect resolution changes to issue reINITs
+	initREQ = false,                     -- is a re-init request pending?
+	marginsREQ = false,                  -- is a margins update pending?
 	last_mouseX,
-	last_mouseY,                            -- last mouse position, to detect significant mouse movement
+	last_mouseY,                         -- last mouse position, to detect significant mouse movement
 	mouse_in_window = false,
 	message_text,
 	message_hide_timer,
@@ -1964,7 +1964,7 @@ function prepare_elements()
 						(marker < element.slider.max.value) then
 						local s = get_slider_ele_pos_for(element, marker)
 
-						if (slider_lo.gap > 1) then       -- draw triangles
+						if (slider_lo.gap > 1) then -- draw triangles
 							local a = slider_lo.gap / 0.5 --0.866
 
 							--top
@@ -2251,7 +2251,7 @@ function render_elements(master_ass)
 			if type(element.content) == "function" then
 				buttontext = element.content() -- function objects
 			elseif not (element.content == nil) then
-				buttontext = element.content   -- text objects
+				buttontext = element.content -- text objects
 			end
 
 			local maxchars = element.layout.button.maxchars
@@ -2602,8 +2602,8 @@ layouts["box"] = function()
 	local osc_geo = {
 		w = 550, -- width
 		h = 138, -- height
-		r = 10,  -- corner-radius
-		p = 15,  -- padding
+		r = 10, -- corner-radius
+		p = 15, -- padding
 	}
 
 	-- make sure the OSC actually fits into the video
@@ -2780,8 +2780,8 @@ end
 layouts["slimbox"] = function()
 	local osc_geo = {
 		w = 660, -- width
-		h = 70,  -- height
-		r = 10,  -- corner-radius
+		h = 70, -- height
+		r = 10, -- corner-radius
 	}
 
 	-- make sure the OSC actually fits into the video
@@ -4130,7 +4130,7 @@ local duration_watched = false
 function update_duration_watch()
 	local want_watch = user_opts.livemarkers and
 		(mp.get_property_number("chapters", 0) or 0) > 0 and
-		true or false                -- ensure it's a boolean
+		true or false -- ensure it's a boolean
 
 	if (want_watch ~= duration_watched) then
 		if want_watch then

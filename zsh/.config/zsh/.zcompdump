@@ -1,4 +1,4 @@
-#files: 833	version: 5.9
+#files: 848	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -185,6 +185,7 @@ _comps=(
 'cmp' '_cmp'
 'co' '_rcs'
 'code' '_code'
+'codium' '_codium'
 'column' '_column'
 'comb' '_sccs'
 'combine' '_imagemagick'
@@ -268,6 +269,9 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
+'docker' '_docker'
+'dockerd' '_docker'
+'dolphin' '_dolphin'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
 'drill' '_drill'
@@ -361,6 +365,7 @@ _comps=(
 'fixwpps' '_psutils'
 'fixwwps' '_psutils'
 'flac' '_flac'
+'flatpak' '_flatpak'
 'flex' '_flex'
 'flex++' '_flex'
 'flipdiff' '_patchutils'
@@ -665,6 +670,8 @@ _comps=(
 'kioclient' '_kfmclient'
 'knock' '_knock'
 'konqueror' '_webbrowser'
+'konsole' '_konsole'
+'konsoleprofile' '_konsole'
 'kpartx' '_kpartx'
 'kpdf' '_pdf'
 'kscreen-doctor' '_kscreen-doctor'
@@ -1042,9 +1049,17 @@ _comps=(
 'qiv' '_qiv'
 'quilt' '_quilt'
 'r' '_fc'
+'r2' '_r2'
+'rabin2' '_rabin2'
+'radiff2' '_radiff2'
+'rafind2' '_rafind2'
+'ragg2' '_ragg2'
+'rahash2' '_rahash2'
 'rake' '_rake'
 'ranlib' '_ranlib'
 'rar' '_rar'
+'rasm2' '_rasm2'
+'rax2' '_rax2'
 'rc' '_sh'
 'rclone' '_rclone'
 'rcp' '_rlogin'
@@ -1160,6 +1175,7 @@ _comps=(
 'showchar' '_psutils'
 'showmount' '_showmount'
 'shred' '_shred'
+'shtab' '_shtab'
 'shuf' '_shuf'
 'shutdown' '_shutdown'
 'sisu' '_sisu'
@@ -1232,6 +1248,7 @@ _comps=(
 'swaymsg' '_swaymsg'
 'swift' '_swift'
 'swiftc' '_swift'
+'swww' '_swww'
 'sync' '_nothing'
 'sysctl' '_sysctl'
 'systemctl' '_systemctl'
@@ -1699,15 +1716,18 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _archinstallscripts _bat _bluetoothctl _bootctl _busctl \
-            _bwrap _calibre _cargo _coredumpctl _curl \
-            _exa _fd _foot _footclient _hostnamectl \
-            _journalctl _kdeconnect _kernel-install _kscreen-doctor _libinput \
+            _bwrap _calibre _cargo _codium _coredumpctl \
+            _curl _docker _dolphin _exa _fd \
+            _flatpak _foot _footclient _hostnamectl _journalctl \
+            _kdeconnect _kernel-install _konsole _kscreen-doctor _libinput \
             _localectl _loginctl _machinectl _mako _makoctl \
             _meson _mkinitcpio _mpv _networkctl _ninja \
             _oomctl _pacman _paru _plasmashell _playerctl \
-            _pulseaudio _resolvectl _rg _rustup _sd_hosts_or_user_at_host \
-            _sd_machines _sd_outputmodes _sd_unit_files _sway _swaylock \
-            _swaymsg _systemctl _systemd _systemd-analyze _systemd-delta \
+            _pulseaudio _r2 _rabin2 _radiff2 _rafind2 \
+            _ragg2 _rahash2 _rasm2 _rax2 _resolvectl \
+            _rg _rustup _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes \
+            _sd_unit_files _shtab _sway _swaylock _swaymsg \
+            _swww _systemctl _systemd _systemd-analyze _systemd-delta \
             _systemd-inhibit _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles \
             _systemsettings _timedatectl _tldr _trash _trash-empty \
             _trash-list _trash-put _trash-restore _udevadm _wl-copy \
