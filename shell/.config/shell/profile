@@ -89,3 +89,5 @@ if [[ $(tty) = /dev/tty1 ]]
    echo "$(date) $default" >>/tmp/loginlog
    exec sx $default 
 fi
+
+if [ -e /home/yogansh/.nix-profile/etc/profile.d/nix.sh ]; then . /home/yogansh/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
