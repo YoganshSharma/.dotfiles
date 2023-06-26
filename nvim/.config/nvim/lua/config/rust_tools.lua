@@ -1,7 +1,7 @@
 local function on_attach(client, bufnr)
-    require("nvim-navic").attach(client, bufnr)
-    require("config.lsp.formatting").setup(client, bufnr)
-    require("config.lsp.keys").setup(client, bufnr)
+    -- require("nvim-navic").attach(client, bufnr)
+    -- require("config.lsp.formatting").setup(client, bufnr)
+    -- require("config.lsp.keys").setup(client, bufnr)
 end
 
 local opts = {

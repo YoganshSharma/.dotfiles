@@ -19,14 +19,7 @@ end
 
 function M.format(client, buf)
 	if M.autoformat then
-		vim.lsp.buf.format({
-			filter = function(client)
-				-- apply whatever logic you want (in this example, we'll only use null-ls)
-				return client.name ~= "tailwindcss"
-			end,
-			bufnr = buf,
-		})
-		-- vim.lsp.buf.formatting()
+		vim.lsp.buf.format()
 	end
 end
 

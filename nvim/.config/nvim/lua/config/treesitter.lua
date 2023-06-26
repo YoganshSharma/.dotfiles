@@ -139,7 +139,8 @@ local function setup()
   -- Add Markdown
   -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
   -- parser_config.jsonc.used_by = "json"
-  local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+  -- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+  local ft_to_parser = setmetatable({}, {vim.treesitter.language.register})
   ft_to_parser.json = "jsonc" -- the someft filetype will use the python parser and queries.
 
   -- parser_config.wgsl = {

@@ -59,7 +59,7 @@ export TASKDATA="$XDG_DATA_HOME"/task
 
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export LIBCLANG_PATH=/usr/lib/libclang.so
-export PATH=$PATH:~/.local/bin/:~/.local/share/npm/bin/:/home/yogansh/.local/share/gem/ruby/3.0.0/bin
+export PATH=$PATH:~/.local/bin/:~/.local/share/npm/bin/:/home/yogansh/.local/share/gem/ruby/3.0.0/bin:~/.local/share/cargo/bin:$GOPATH/bin
 
 export ANDROID_HOME="$HOME/Android/Sdk/"
 

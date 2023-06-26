@@ -65,7 +65,7 @@ util.nnoremap("<S-TAB>", ":bprevious<CR>")
 util.nnoremap("S", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 util.nnoremap("<leader>cf", function()
-	vim.lsp.buf.formatting()
+	vim.lsp.buf.format()
 end)
 
 -- Move to window using the <ctrl> movement keys
@@ -135,7 +135,9 @@ local leader = {
 		["s"] = { "<C-W>s", "split-window-below" },
 		["v"] = { "<C-W>v", "split-window-right" },
 	},
-	c = { v = { "<cmd>Vista!!<CR>", "Vista" }, O = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" } },
+	c = {
+		name = "+code",
+	},
 	b = {
 		name = "+buffer",
 		["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
@@ -206,20 +208,12 @@ local leader = {
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		n = { "<cmd>enew<cr>", "New File" },
 		-- z = "Zoxide",
-		d = "Dot Files",
-	},
-	o = {
-		name = "+open",
-		p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
-		g = { "<cmd>Glow<cr>", "Markdown Glow" },
-		n = { "<cmd>lua require('github-notifications.menu').notifications()<cr>", "GitHub Notifications" },
+		d = {function()
+  require("telescope.builtin").git_files({ cwd = "~/.dotfiles/" })
+end, "Dot files" },
 	},
 	t = {
 		name = "toggle",
-		f = {
-			require("config.lsp.formatting").toggle,
-			"Format on Save",
-		},
 		s = {
 			function()
 				util.toggle("spell")
@@ -240,30 +234,12 @@ local leader = {
 			"Line Numbers",
 		},
 	},
-	["<tab>"] = {
-		name = "workspace",
-		["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },
-
-		n = { "<cmd>tabnext<CR>", "Next" },
-		d = { "<cmd>tabclose<CR>", "Close" },
-		p = { "<cmd>tabprevious<CR>", "Previous" },
-		["]"] = { "<cmd>tabnext<CR>", "Next" },
-		["["] = { "<cmd>tabprevious<CR>", "Previous" },
-		f = { "<cmd>tabfirst<CR>", "First" },
-		l = { "<cmd>tablast<CR>", "Last" },
-	},
 	["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
 	[" "] = "Find File",
 	["."] = { ":Telescope file_browser<CR>", "Browse Files" },
 	[","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
 	["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
 	[":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
-	["C"] = {
-		function()
-			util.clipman()
-		end,
-		"Clipman",
-	},
 	q = {
 		name = "+quit/session",
 		q = { "<cmd>:qa<cr>", "Quit" },

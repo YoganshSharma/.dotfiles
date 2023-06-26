@@ -1,3 +1,4 @@
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -7,7 +8,7 @@ vim.api.nvim_command("au TextYankPost * silent! lua vim.highlight.on_yank()")
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 vim.opt.autoindent = true

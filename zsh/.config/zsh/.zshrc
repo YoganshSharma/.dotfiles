@@ -1,9 +1,6 @@
 SHELL=/bin/zsh
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-# fpath+=$HOME/.config/zsh/plugins/pure/
-fpath+=$HOME/stuff/reps/pure
-autoload -U promptinit; promptinit
-prompt pure
+eval "$(starship init zsh)"
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
@@ -62,7 +59,7 @@ source ~/.config/zsh/plugins/ohmyzsh/plugins/dirhistory/dirhistory.plugin.zsh
 #auto-notify plugin settings
 # Set threshold to 20seconds
 export AUTO_NOTIFY_THRESHOLD=20
-AUTO_NOTIFY_IGNORE+=("ranger" "fzf" "lf" "pulsemixer" "mpv" "bat")
+AUTO_NOTIFY_IGNORE+=("ranger" "fzf" "lf" "pulsemixer" "mpv" "bat" "zathura")
 
 
 # pip zsh completion start
