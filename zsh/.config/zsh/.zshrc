@@ -76,6 +76,7 @@ compctl -K _pip_completion pip
 #PF_INFO="ascii title os host shell wm kernel uptime pkgs memory palette" pfetch
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+eval $(thefuck --alias) # https://github.com/nvbn/thefuck
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # fortune -a -c |cowsay
@@ -85,4 +86,3 @@ compctl -K _pip_completion pip
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 [ -f "/home/yogansh/.ghcup/env" ] && source "/home/yogansh/.ghcup/env" # ghcup-env
-

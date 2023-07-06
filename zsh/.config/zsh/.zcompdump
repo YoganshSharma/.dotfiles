@@ -136,11 +136,6 @@ _comps=(
 'cabal' '_cabal'
 'cal' '_cal'
 'calendar' '_calendar'
-'calibre' '_calibre'
-'calibredb' '_calibre'
-'calibre-debug' '_calibre'
-'calibre-server' '_calibre'
-'calibre-smtp' '_calibre'
 'cargo' '_cargo'
 'cat' '_cat'
 'catchsegv' '_precommand'
@@ -293,11 +288,6 @@ _comps=(
 'dwb' '_webbrowser'
 'e2label' '_e2label'
 'eatmydata' '_precommand'
-'ebook-convert' '_calibre'
-'ebook-edit' '_calibre'
-'ebook-meta' '_calibre'
-'ebook-polish' '_calibre'
-'ebook-viewer' '_calibre'
 'ecasound' '_ecasound'
 'echotc' '_echotc'
 'echoti' '_echoti'
@@ -341,7 +331,6 @@ _comps=(
 'fc-match' '_xft_fonts'
 'fd' '_fd'
 'feh' '_feh'
-'fetch-ebook-metadata' '_calibre'
 'fetchmail' '_fetchmail'
 'ffmpeg' '_ffmpeg'
 'fg' '_jobs_fg'
@@ -489,6 +478,7 @@ _comps=(
 'gnutls-serv' '_gnutls'
 'god' '_od'
 'gofmt' '_go'
+'golangci-lint' '_golangci-lint'
 'gpasswd' '_gpasswd'
 'gpaste' '_paste'
 'gpatch' '_patch'
@@ -722,8 +712,6 @@ _comps=(
 'lpr' '_lp'
 'lprm' '_lp'
 'lpstat' '_lp'
-'lrf2lrs' '_calibre'
-'lrfviewer' '_calibre'
 'ls' '_ls'
 'lsattr' '_lsattr'
 'lsblk' '_lsblk'
@@ -1723,9 +1711,9 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _archinstallscripts _bat _bluetoothctl _bootctl _busctl \
-            _bwrap _calibre _cargo _codium _coredumpctl \
-            _curl _docker _dolphin _exa _fd \
-            _flatpak _foot _footclient _gh _hostnamectl \
+            _bwrap _cargo _codium _coredumpctl _curl \
+            _docker _dolphin _exa _fd _flatpak \
+            _foot _footclient _gh _golangci-lint _hostnamectl \
             _journalctl _kdeconnect _kernel-install _konsole _kscreen-doctor \
             _libinput _localectl _loginctl _machinectl _mako \
             _makoctl _meson _mkinitcpio _mpv _networkctl \

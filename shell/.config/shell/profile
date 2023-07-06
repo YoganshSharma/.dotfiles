@@ -66,28 +66,29 @@ export ANDROID_HOME="$HOME/Android/Sdk/"
 
 if [[ $(tty) = /dev/tty1 ]]
  then 
-   export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-   default="$(realpath ~/.config/x11/xinitrc)"
-   initrcs=$(/bin/ls -1 ~/.config/x11/initrcs)
-   initrcs_abs=$(/bin/ls -d -1 ~/.config/x11/initrcs/**)
-   list=''
-   i=1   
-   for rc in $initrcs  
-   do      
-     list="${list}\n${i}\t${rc}" 
-     i=$(($i+1))
-   done
-   echo -e "$list"
-   len="$(printf $list|wc -l)"
-   echo "Choose from [1-$len] (default: $default)"
-   read -r init
-   { for j in `seq $len`
-   do 
-     [[ "$init" == "$j" ]]  && default=$(printf "$initrcs_abs"|sed "$j!d")
-   done }  
-   echo "using $default"
-   echo "$(date) $default" >>/tmp/loginlog
-   exec sx $default 
+   # export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+   # default="$(realpath ~/.config/x11/xinitrc)"
+   # initrcs=$(/bin/ls -1 ~/.config/x11/initrcs)
+   # initrcs_abs=$(/bin/ls -d -1 ~/.config/x11/initrcs/**)
+   # list=''
+   # i=1   
+   # for rc in $initrcs  
+   # do      
+   #   list="${list}\n${i}\t${rc}" 
+   #   i=$(($i+1))
+   # done
+   # echo -e "$list"
+   # len="$(printf $list|wc -l)"
+   # echo "Choose from [1-$len] (default: $default)"
+   # read -r init
+   # { for j in `seq $len`
+   # do 
+   #   [[ "$init" == "$j" ]]  && default=$(printf "$initrcs_abs"|sed "$j!d")
+   # done }  
+   # echo "using $default"
+   # echo "$(date) $default" >>/tmp/loginlog
+   # exec sx $default 
+   Hyprland
 fi
 
 if [ -e /home/yogansh/.nix-profile/etc/profile.d/nix.sh ]; then . /home/yogansh/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

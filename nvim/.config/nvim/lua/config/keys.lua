@@ -12,8 +12,6 @@ wk.setup({
 	key_labels = { ["<leader>"] = "SPC" },
 })
 
-util.nnoremap("<leader>tt", ":Ex<CR>")
-util.nnoremap("<leader>u", ":UndotreeShow<CR>")
 
 util.vnoremap("J", ":m '>+1<CR>gv=gv")
 util.vnoremap("K", ":m '<-2<CR>gv=gv")
@@ -233,9 +231,11 @@ end, "Dot files" },
 			end,
 			"Line Numbers",
 		},
+        t = { "<cmd>TroubleToggle<CR>", "Toggle Trouble", },
+        e = { "<cmd>Ex<CR>", "Ex", },
 	},
 	["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
-	[" "] = "Find File",
+	[" "] = { ":Telescope git_files<CR>", "Find File"},
 	["."] = { ":Telescope file_browser<CR>", "Browse Files" },
 	[","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
 	["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
@@ -251,20 +251,14 @@ end, "Dot files" },
 	x = {
 		name = "+errors",
 		x = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble" },
-		t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
-		T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
+		-- t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
+		-- T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
 		l = { "<cmd>lopen<cr>", "Open Location List" },
 		q = { "<cmd>copen<cr>", "Open Quickfix List" },
 	},
 	Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode" },
 	z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
 	T = { [[<Plug>PlenaryTestFile]], "Plenary Test" },
-	D = {
-		function()
-			util.docs()
-		end,
-		"Create Docs from README.md",
-	},
 }
 
 for i = 0, 10 do

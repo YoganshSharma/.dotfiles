@@ -55,13 +55,13 @@ local function setup()
       keymaps = {
         init_selection = "<C-n>",
         node_incremental = "<C-n>",
-        scope_incremental = "<C-s>",
+        scope_incremental = "<C-h>",
         node_decremental = "<C-r>",
       },
     },
     refactor = {
       smart_rename = {
-        enable = true,
+        enable = false,
         client = {
           smart_rename = "<leader>cr",
         },
@@ -69,7 +69,7 @@ local function setup()
       navigation = {
         enable = true,
         keymaps = {
-          goto_definition = "gd",
+          -- goto_definition = "gd", -- Interferes with lsp
           list_definitions = "gnD",
           list_definitions_toc = "gO",
           goto_next_usage = "<a-*>",

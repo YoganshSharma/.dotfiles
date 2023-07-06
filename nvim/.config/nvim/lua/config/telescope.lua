@@ -89,17 +89,4 @@ M.project_files = function(opts)
   end
 end
 
-local util = require("util")
-
-util.nnoremap("<Leader><Space>", M.project_files)
-util.nnoremap("<Leader>fd", function()
-  require("telescope.builtin").git_files({ cwd = "~/.dotfiles/" })
-end)
-
--- util.nnoremap("<leader>fz", function()
---   require("telescope").extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } })
--- end)
-
-util.nnoremap("<leader>pp", ":lua require'telescope'.extensions.project.project{}<CR>")
-
 return M

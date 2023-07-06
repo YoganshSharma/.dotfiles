@@ -59,12 +59,12 @@ function M.setup(client, bufnr)
 		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
 		r = { "<cmd>Telescope lsp_references<cr>", "References" },
 		R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-		D = { "<Cmd>Telescope lsp_declarations<CR>", "Goto Declaration" },
 		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
 		I = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
 		t = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
 	}
 
+    print("CLIENT:",client.name)
 	util.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	util.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	util.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
@@ -72,6 +72,7 @@ function M.setup(client, bufnr)
 	util.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
 	util.nnoremap("[w", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
 	util.nnoremap("]w", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
+	util.inoremap("<C-l>", function() vim.lsp.buf.signature_help() end, opts)
 
 	local trigger_chars = client.server_capabilities.signatureHelpTriggerCharacters
 	trigger_chars = { "," }
