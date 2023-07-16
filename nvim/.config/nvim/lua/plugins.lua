@@ -28,7 +28,7 @@ local function plugins(use)
         end
     })
 
-    use({ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" })
+    -- use({ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" }) -- depreceated
     -- use("antoinemadec/FixCursorHold.nvim") -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
 
     use {
@@ -53,12 +53,27 @@ local function plugins(use)
         end,
     })
     -- Tabs
+    -- use({
+    --     "akinsho/nvim-bufferline.lua",
+    --     -- event = "BufReadPre",
+    --     config = function()
+    --         require("config.bufferline")
+    --     end,
+    --
+
+    -- statusline
     use({
-        "akinsho/nvim-bufferline.lua",
-        -- event = "BufReadPre",
+        'windwp/windline.nvim',
         config = function()
-            require("config.bufferline")
+            require('config.windline')
         end,
+        requires = { 'lewis6991/gitsigns.nvim' },
+    })
+    use({
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
     })
     use({ "mbbill/undotree", cmd = "UndotreeToggle" })
     use({

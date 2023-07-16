@@ -64,7 +64,6 @@ function M.setup(client, bufnr)
 		t = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
 	}
 
-    print("CLIENT:",client.name)
 	util.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	util.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	util.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)

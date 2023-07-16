@@ -163,6 +163,7 @@ local opts = {
         -- setting it to false may improve startup time
         standalone = true,
         on_attach = on_attach,
+        procMacro = { enable = true },
     }, -- rust-analyzer options
 
     -- debugging stuff
