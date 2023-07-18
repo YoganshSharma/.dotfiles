@@ -10,7 +10,7 @@ export BROWSER=firefox
 export EDITOR="nvim"
 export TERMINAL="st"
 export OPENER=rifle
-export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export MANPAGER="nvim -c 'Man!'"
 export PRINTER="EPSON_L220_Series"
 export DOTFILES=$HOME/.dotfiles
 export LANG="en_US.UTF-8"
