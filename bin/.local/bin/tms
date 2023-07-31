@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # tmux-sessionizer by theprimeagen
-if [[ $# -eq 1 ]]; then
+if [ "$#" -eq 1 -a -d "$1" ]; then
     selected=$1
 else
-    selected=$(find ~/stuff/projects/ ~/stuff/reps  -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/stuff/projects/ ~/stuff/reps  -mindepth 1 -maxdepth 1 -type d | fzf -1 -q "$*")
 fi
 
 if [[ -z $selected ]]; then
