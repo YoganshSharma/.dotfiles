@@ -2,3 +2,4 @@ mpd/.config/mpd/playlists
 newsboat/.config/newsboat/urls
 zsh/.config/zsh/.zcompdump
 hyprland/.config/hypr/wallpapers/wallpaper.jpg
+*.bak/

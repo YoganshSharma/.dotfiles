@@ -1,0 +1,8 @@
+[user]
+	email = yoganshsharma65@gmail.com
+	name = Yogansh Sharma
+	signingkey = E440DD64EE2DEADB
+[commit]
+	gpgsign = true
+[gpg]
+	format = openpgp
