@@ -10,6 +10,7 @@ lsp.ensure_installed({
 	'cssls',
 	'html',
 	'lua_ls',
+	'astro',
 })
 
 -- Fix Undefined global 'vim'
@@ -59,4 +60,24 @@ vim.api.nvim_create_autocmd("BufWritePre", {
    require('go.format').goimport()
   end,
   group = format_sync_grp,
+})
+
+-- for templ
+-- additional filetypes
+vim.filetype.add({
+ extension = {
+  templ = "templ",
+ },
+})
+
+require("lspconfig").tailwindcss.setup({
+  filetypes = {
+    'templ'
+    -- include any other filetypes where you need tailwindcss
+  },
+  init_options = {
+    userLanguages = {
+        templ = "html"
+    }
+  }
 })

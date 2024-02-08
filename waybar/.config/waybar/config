@@ -5,22 +5,17 @@
     "margin-bottom": 0,
     "margin-right": 0,
 //    "spacing": 5, // Gaps between modules (4px)
-    "modules-left": ["wlr/workspaces", "cpu", "memory","battery"],
+    "modules-left": ["hyprland/workspaces", "cpu", "memory","battery","battery#BAT0"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network",  "clock", "custom/notif"],
-    "wlr/workspaces": {
+    "modules-right": ["pulseaudio", "network", "tray", "clock", "custom/notif"],
+    "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
-//      "format-icons": {
-//        "1": "",
-//        "2": "",
-//        "3": "",
-//        "4": "",
-//        "5": "",
-//        "urgent": "",
+      "format-icons": {
+ //       "urgent": "",
 //        "active": "",
-//        "default": ""
-//      }
+ //       "default": ""
+      }
     },
     "hyprland/window": {
        	"max-length": 48,
@@ -47,7 +42,7 @@
         "max-length": 10,
     },
     "backlight": {
-        "device": "DP-1",
+        "device": "DP-0",
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-click": "",
@@ -72,13 +67,31 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "bluetoothctl connect FC:58:FA:42:3D:D8"
+        "on-click": "pavucontrol"
     },
 
     "bluetooth": {
         "format": " {status}",
     },
 
+    "battery#BAT0": {
+      "bat": "BAT0",
+      "interval": 60,
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      "on-click": "sh ~/.config/waybar/scripts/power-profiles", 
+      "max-length": 20,
+      "format": "{icon} {capacity}%",
+      "format-warning": "{icon} {capacity}%",
+      "format-critical": "{icon} {capacity}%",
+      "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
+      "format-plugged": "  {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-full": "  {capacity}%",
+      "format-icons": [" ", " ", " ", " ", " "],
+    },
     "battery": {
       "bat": "BAT1",
       "adapter": "ADP0",

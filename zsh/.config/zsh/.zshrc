@@ -11,7 +11,7 @@ SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
@@ -20,10 +20,9 @@ _comp_options+=(globdots)		# Include hidden files.
 # Case insensitivity while TAB completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-
-# vi mode
-# bindkey -v
-# export KEYTIMEOUT=1
+# # vi mode
+# # bindkey -v
+# # export KEYTIMEOUT=1
 
 source ~/.config/shell/aliasrc
 source ~/.config/shell/functionrc
@@ -52,15 +51,30 @@ bindkey -s '^n' 'cd ..\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 source ~/.config/zsh/plugins/copy-pasta/copy-pasta.plugin.zsh 
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-auto-notify/auto-notify.plugin.zsh
 source ~/.config/zsh/plugins/ohmyzsh/plugins/dirhistory/dirhistory.plugin.zsh
+# eval "$(lua ~/.config/zsh/plugins/z.lua --init zsh)"
+# [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+eval "$(zoxide init zsh)"
 
 #auto-notify plugin settings
 # Set threshold to 20seconds
 export AUTO_NOTIFY_THRESHOLD=20
 AUTO_NOTIFY_IGNORE+=("ranger" "fzf" "lf" "pulsemixer" "mpv" "bat" "zathura")
 
+# python autoenv setup, in the directory make .env file and write activation command
+# source `which activate.sh` 
+
+
+#PF_INFO="ascii title os host shell wm kernel uptime pkgs memory palette" pfetch
+
+eval $(thefuck --alias) # https://github.com/nvbn/thefuck
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# nvm node version manager
+# source /usr/share/nvm/init-nvm.sh
 
 # pip zsh completion start
 function _pip_completion {
@@ -73,16 +87,26 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
-#PF_INFO="ascii title os host shell wm kernel uptime pkgs memory palette" pfetch
 
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
-eval $(thefuck --alias) # https://github.com/nvbn/thefuck
+#[ -f "/home/yogansh/.ghcup/env" ] && source "/home/yogansh/.ghcup/env" # ghcup-env
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# bun completions
+[ -s "/home/yogansh/.bun/_bun" ] && source "/home/yogansh/.bun/_bun"
 # fortune -a -c |cowsay
 # fortune |cowsay -f tux
 
+# opam configuration
+[[ ! -r /home/yogansh/.opam/opam-init/init.zsh ]] || source /home/yogansh/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 # Load syntax highlighting; should be last.
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename '/home/yogansh/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
 [ -f "/home/yogansh/.ghcup/env" ] && source "/home/yogansh/.ghcup/env" # ghcup-env

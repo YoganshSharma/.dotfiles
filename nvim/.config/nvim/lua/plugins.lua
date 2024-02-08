@@ -1,3 +1,4 @@
+
 local packer = require("util.packer")
 
 local config = {
@@ -184,6 +185,36 @@ local function plugins(use)
             "nvim-treesitter/nvim-treesitter"
         }
     })
+    use({
+  "adalessa/laravel.nvim",
+  requires = {
+    "nvim-telescope/telescope.nvim",
+    "tpope/vim-dotenv",
+    "MunifTanjim/nui.nvim",
+    "nvimtools/none-ls.nvim",
+  },
+  cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+  keys = {
+    { "<leader>la", ":Laravel artisan<cr>" },
+    { "<leader>lr", ":Laravel routes<cr>" },
+    { "<leader>lm", ":Laravel related<cr>" },
+  },
+  event = { "VeryLazy" },
+  config = true,
+    })
+    use({
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        -- optionally, override the default options:
+        config = function()
+            require("tailwindcss-colorizer-cmp").setup({
+                color_square_width = 2,
+            })
+        end
+    })
+    use { "kiyoon/jupynium.nvim", run = "pip3 install --user ." }
+    -- use { "kiyoon/jupynium.nvim", run = "conda run --no-capture-output -n jupynium pip install ." }
+    use { "rcarriga/nvim-notify" }   -- optional
+    use { "stevearc/dressing.nvim" } -- optional, UI for :JupyniumKernelSelect
     -- Fuzzy finder
     use({
         "nvim-telescope/telescope.nvim",
@@ -202,6 +233,25 @@ local function plugins(use)
         },
     })
     use({ "nvim-lua/plenary.nvim", module = "plenary" })
+
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" },
+    })
+
+    use({
+        "ryoppippi/bad-apple.vim",
+        requires = {
+            "vim-denops/denops.vim",
+        },
+    })
+    use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua',
+        requires = {
+            'nvim-lua/plenary.nvim', "nvim-telescope/telescope.nvim"
+        },
+    }
 
     -- Theme: icons
     use({

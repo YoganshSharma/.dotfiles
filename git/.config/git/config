@@ -1,8 +1,10 @@
 [user]
 	email = yoganshsharma65@gmail.com
 	name = Yogansh Sharma
-	signingkey = E440DD64EE2DEADB
+	signingkey = 7678474B3A6CECA5D513DE96498C0A894B36B2CC
 [commit]
 	gpgsign = true
 [gpg]
 	format = openpgp
+[alias]
+    clone-worktree="!sh git_clone_worktree.sh"
