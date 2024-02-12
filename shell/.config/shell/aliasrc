@@ -13,11 +13,11 @@ alias fgrep='fgrep --color=auto'
 alias ..='cd ..'
 
 # Changing "ls" to "eza"
-alias ls='eza --icons --color=auto --group-directories-first' # my preferred listing
-alias la='eza --icons -ah --color=auto --group-directories-first'  # all files and dirs
-alias ll='eza --icons -lah --color=auto --group-directories-first'  # long format
-alias lt='eza --icons -aT --color=auto --group-directories-first' # tree listing
-alias lm='eza --icons -ah --color=auto --sort=modified --group-directories-first'  # all files and dirs
+alias ls='eza --icons --color=auto --group-directories-first'                     # my preferred listing
+alias la='eza --icons -ah --color=auto --group-directories-first'                 # all files and dirs
+alias ll='eza --icons -lah --color=auto --group-directories-first'                # long format
+alias lt='eza --icons -aT --color=auto --group-directories-first'                 # tree listing
+alias lm='eza --icons -ah --color=auto --sort=modified --group-directories-first' # all files and dirs
 
 alias l.='eza -a --icons| grep -E "^\."'
 
@@ -45,7 +45,6 @@ alias bt='bluetoothctl'
 alias ff='firefox-developer-edition'
 alias sdh='sudo dhcpcd'
 
-
 #???
 alias mine='sudo /usr/bin/cpuminer -a cryptonight -o stratum+tcp://pool.minexmr.com:4444 -u `cat ~/mineid` -p x -t 3'
 alias rice='nitrogen --save --set-scaled --random ~/wallpapers/ && python ~/.config/scripts/wallpaper_theme.py && qtile cmd-obj -o cmd -f restart'
@@ -54,3 +53,5 @@ alias b='cd /mnt/winlinux/bpms'
 alias l='cd /mnt/personal/Videos/'
 alias wallchooser="find	"$HOME/wallpapers/"find /home/yogansh/wallpapers/ -name '*.png' -o -name '*.jpg' | sxiv -r -q -t -o -|xargs -r swaybg -m fill -i"
 alias evg="sudo evtest --grab"
+
+alias ht="hyprctl keyword 'device:tpps/2-ibm-trackpoint:enabled'"

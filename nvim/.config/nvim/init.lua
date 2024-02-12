@@ -1,8 +1,3 @@
-require("options")
-require("plugins")
-vim.filetype.add({
- extension = {
-  templ = "templ",
- },
-})
-vim.cmd("colorscheme gruvbox")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+vim.cmd([[profile start ~/.config/nvim/profile.log]])
+require("config.lazy")

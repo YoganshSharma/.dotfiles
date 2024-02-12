@@ -5,7 +5,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state/"
 export XDG_RUNTIME_DIR=/run/user/1000
 
-export SHELL="/bin/zsh"
+#export SHELL="/bin/zsh"
 export BROWSER=firefox-developer-edition
 export EDITOR="nvim"
 export TERMINAL="alacritty"
@@ -96,5 +96,3 @@ if [[ $(tty) = /dev/tty1 ]]; then
 	# exec sx $default
 	Hyprland
 fi
-
-if [ -e /home/yogansh/.nix-profile/etc/profile.d/nix.sh ]; then . /home/yogansh/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
